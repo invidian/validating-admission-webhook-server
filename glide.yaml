@@ -1,0 +1,6 @@
+package: validating-admission-webhook-server
+import:
+  - package: k8s.io/client-go
+    version: v9.0.0
+  - package: github.com/golang/glog
+  - package: gopkg.in/yaml.v2

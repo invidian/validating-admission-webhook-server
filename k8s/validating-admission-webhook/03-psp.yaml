@@ -1,0 +1,25 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: validating-admission-webhook
+  namespace: validating-admission-webhook
+rules:
+- apiGroups: ['extensions']
+  resources: ['podsecuritypolicies']
+  verbs:     ['use']
+  resourceNames:
+  - default
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: validating-admission-webhook
+  namespace: validating-admission-webhook
+roleRef:
+  kind: Role
+  name: validating-admission-webhook
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: Group
+  apiGroup: rbac.authorization.k8s.io
+  name: system:serviceaccounts

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validating-admission-webhook
+  namespace: validating-admission-webhook
+  labels:
+    app: validating-admission-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validating-admission-webhook
+  template:
+    metadata:
+      labels:
+        app: validating-admission-webhook
+    spec:
+      containers:
+        - name: validating-admission-webhook
+          image: invidian/validating-admission-webhook-server
+          imagePullPolicy: IfNotPresent
+          args:
+            - -tlsCertFile=/validating-admission-webhook/certs/cert.pem
+            - -tlsKeyFile=/validating-admission-webhook/certs/key.pem
+            - -configFile=/validating-admission-webhook/config.yaml
+            - -port=8443
+            - -alsologtostderr
+            - -v=4
+            - 2>&1
+          volumeMounts:
+            - name: validating-admission-webhook-certs
+              mountPath: /validating-admission-webhook/certs
+              readOnly: true
+            - name: validating-admission-webhook-config
+              mountPath: /validating-admission-webhook/config.yaml
+              subPath: config.yaml
+              readOnly: true
+      volumes:
+        - name: validating-admission-webhook-certs
+          secret:
+            secretName: validating-admission-webhook-certs
+        - name: validating-admission-webhook-config
+          configMap:
+            name: validating-admission-webhook-config

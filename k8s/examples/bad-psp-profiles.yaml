@@ -1,0 +1,19 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: bad-psp-profiles
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'localhost/default,unconfined'
+spec:
+  privileged: true  # Don't allow privileged pods!
+  # The rest fills in some required fields.
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
+  volumes:
+  - '*'

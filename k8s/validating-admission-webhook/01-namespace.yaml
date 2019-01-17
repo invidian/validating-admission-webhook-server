@@ -1,0 +1,6 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: validating-admission-webhook
+  labels:
+    name: validating-admission-webhook

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: validating-admission-webhook-config
+  namespace: validating-admission-webhook
+data:
+  config.yaml: |
+    ---
+    kinds:
+      - name: "PodSecurityPolicy"
+        rules:
+          - name: 'Reject seccomp unconfined'
+            jsonpath: "{.metadata.annotations['seccomp\\.security\\.alpha\\.kubernetes\\.io/defaultProfileName', 'seccomp\\.security\\.alpha\\.kubernetes\\.io/allowededProfileNames']}"
+            regexp: '(unconfined|\*|^$)'
+            message: 'Creating PodSecurityPolicy which allows seccomp to be disabled is not allowed'

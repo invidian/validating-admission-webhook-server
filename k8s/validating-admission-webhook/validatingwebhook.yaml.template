@@ -1,0 +1,25 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: validating-admission-webhook
+  labels:
+    app: validating-admission-webhook
+webhooks:
+  - name: validating-admission-webhook.yourdomain.com
+    failurePolicy: Fail
+    clientConfig:
+      service:
+        name: validating-admission-webhook
+        namespace: validating-admission-webhook
+        path: "/validate"
+      caBundle: ${CA_BUNDLE}
+    rules:
+      - operations:
+          - CREATE
+          - UPDATE
+        apiGroups:
+          - "policy"
+        apiVersions:
+          - v1beta1
+        resources:
+          - podsecuritypolicies
