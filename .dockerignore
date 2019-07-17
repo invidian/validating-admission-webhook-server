@@ -1,6 +1,4 @@
-build
 k8s
-boostrap
 Dockerfile
 README.md
 vendor
