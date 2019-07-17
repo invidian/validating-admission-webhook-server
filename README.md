@@ -155,7 +155,7 @@ podsecuritypolicy.policy "good-psp" configured
 Error from server: error when creating "k8s/examples/bad-psp-default.yaml": admission webhook "validating-admission-webhook.yourdomain.com" denied the request: Creating PodSecurityPolicy which allows seccomp to be disabled is not allowed
 Error from server: error when creating "k8s/examples/bad-psp-explicit.yaml": admission webhook "validating-admission-webhook.yourdomain.com" denied the request: Creating PodSecurityPolicy which allows seccomp to be disabled is not allowed
 Error from server: error when creating "k8s/examples/bad-psp-profiles-wildcard.yaml": admission webhook "validating-admission-webhook.yourdomain.com" denied the request: Creating PodSecurityPolicy which allows seccomp to be disabled is not allowed
-Error from server: error when creating "k8s/examples/bad-psp-profiles.yaml": admission webhook "validating-admission-webhook.yourdomain.com" denied the request: Creating PodSecurityPolicy which allows seccomp to be disabled is not allowe
+Error from server: error when creating "k8s/examples/bad-psp-profiles.yaml": admission webhook "validating-admission-webhook.yourdomain.com" denied the request: Creating PodSecurityPolicy which allows seccomp to be disabled is not allowed
 ```
 
 For validating existing cluster objects, following shell loop can be used:

@@ -50,7 +50,7 @@ func main() {
 
 	glog.Info("Listening for incoming requests...")
 
-	// Listen for OS shutdown singal
+	// Listen for OS shutdown signal
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
 	<-signalChan
