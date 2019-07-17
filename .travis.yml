@@ -1,7 +1,9 @@
 language: go
 
 go:
-  - "1.11.x"
+  - '1.11'
+  - '1.12'
+  - master
 
 git:
   depth: 1
@@ -9,6 +11,9 @@ git:
 notifications:
   email: false
 
+matrix:
+  allow_failures:
+    - go: master
 
 install: go get
 
